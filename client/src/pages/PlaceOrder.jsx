@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight, CreditCard, DollarSign } from 'lucide-react'
 import axios from 'axios'
 import {toast} from "react-toastify"
+import { AuthContextData } from '../context/AuthContext'
 
 const PlaceOrder = () => {
     const [method, setMethod] = useState('COD')
@@ -31,6 +32,7 @@ const PlaceOrder = () => {
          setCartItem,
     } = useContext(ShopDataContext)
     const navigate = useNavigate();
+    const serverUrl = useContext(AuthContextData)
     
 
     // Calculate cart totals
@@ -90,7 +92,7 @@ const PlaceOrder = () => {
                     console.log('Payment successful:', response);
                     
                     // Verify payment on your server
-                    const {data} = await axios.post('http://localhost:3000/api/orders/verify-payment', {
+                    const {data} = await axios.post(`${serverUrl}api/orders/verify-payment`, {
                         razorpay_order_id: response.razorpay_order_id,
                         razorpay_payment_id: response.razorpay_payment_id,
                         razorpay_signature: response.razorpay_signature
@@ -164,7 +166,8 @@ const PlaceOrder = () => {
 
             switch (method) {
                 case 'COD':
-                    const res = await axios.post('http://localhost:3000/api/orders/placeOrder', orderData, { withCredentials: true });
+                    // const res = await axios.post('http://localhost:3000/api/orders/placeOrder', orderData, { withCredentials: true });
+                    const res = await axios.post(`${serverUrl}api/orders/placeOrder`, orderData, { withCredentials: true });
                     console.log('Order placed successfully:', res.data);
                     if (res.data && res.data._id) {
                         setCartItem({});
@@ -177,7 +180,8 @@ const PlaceOrder = () => {
                     break;
                 
                 case 'razorpay':
-                    const razorRes = await axios.post('http://localhost:3000/api/orders/razorpay', orderData, { withCredentials: true });
+                    // const razorRes = await axios.post('http://localhost:3000/api/orders/razorpay', orderData, { withCredentials: true });
+                    const razorRes = await axios.post(`${serverUrl}api/orders/razorpay`, orderData, { withCredentials: true });
                     if (razorRes.data) {
                         setCartItem({})
                         initRazorpayPayment(razorRes.data);

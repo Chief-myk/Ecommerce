@@ -33,8 +33,11 @@ const createUser = asyncHandler(async (req, res) => {
     // CONSISTENT: Use "token" cookie name like registration
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "strict",
+      // secure: false,
+      // sameSite: "strict",
+
+      secure:true,
+      sameSite:"none",
       maxAge: 3 * 24 * 60 * 60 * 1000,
     });
     
@@ -58,8 +61,8 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, 
-      sameSite: "strict",
+      // secure: false, 
+      // sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
     
@@ -105,8 +108,8 @@ const googleSignUp = asyncHandler(async (req, res) => {
     
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, // Set to true if using HTTPS
-      sameSite: "strict",
+      // secure: false, // Set to true if using HTTPS
+      // sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
     
@@ -174,8 +177,8 @@ const isAdmin = asyncHandler(async (req, res, next) => {
       
       res.cookie("token", token, {
         httpOnly: true,
-        secure: false, // FIXED: Change to false for localhost (http)
-        sameSite: "strict",
+        // secure: false, // FIXED: Change to false for localhost (http)
+        // sameSite: "strict",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
       

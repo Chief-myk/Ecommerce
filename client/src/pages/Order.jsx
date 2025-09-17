@@ -11,7 +11,7 @@ const Order = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { currency } = useContext(ShopDataContext)
-  const serviceUrl = useContext(AuthContextData)
+  const serverUrl = useContext(AuthContextData)
   const navigate = useNavigate()
 
   const getStatusIcon = (status) => {
@@ -58,12 +58,12 @@ const Order = () => {
     try {
       setLoading(true)
       setError(null)
-      const res = await axios.get(`http://localhost:3000/api/orders/userOrders`, { 
-        withCredentials: true 
-      })
-      // const res = await axios.get(`${serviceUrl}api/orders/userOrders`, { 
+      // const res = await axios.get(`http://localhost:3000/api/orders/userOrders`, { 
       //   withCredentials: true 
       // })
+      const res = await axios.get(`${serverUrl}api/orders/userOrders`, { 
+        withCredentials: true 
+      })
       
       if (res.data && res.data.length > 0) {
         const allOrderItems = []
