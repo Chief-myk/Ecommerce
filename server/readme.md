@@ -9,3 +9,11 @@ ctrl + shift + i for github copilot
 
 
 Toastify for notification
+
+server:
+npm install
+node index.js
+
+client :
+npm install; npm run build
+./dist
