@@ -1,0 +1,28 @@
+// config/dbconnection.js
+
+const mongoose = require("mongoose");
+require("dotenv").config();
+const Product = require("../models/productsModel"); // adjust path
+
+const dbConnect = async () => {
+    try {
+           const connection = await mongoose.connect(process.env.MONGO_DB_URL || "mongodb://localhost:27017/Ecommerce");
+        // const connection = await mongoose.connect("mongodb://localhost:27017/Ecommerce");
+        console.log("Mongoose Connected Successfully");
+        // // 🔥 Drop the old slug index if it exists
+        // try {
+        //     await Product.collection.dropIndex("slug_1");
+        //     console.log("Removed old slug index");
+        // } catch (err) {
+        //     if (err.code === 27) {
+        //         console.log("No slug index found, skipping...");
+        //     } else {
+        //         console.error("Error dropping slug index:", err.message);
+        //     }
+        // }
+    } catch (error) {
+        console.error("Database Connection Error: ", error);
+    }
+};
+
+module.exports = dbConnect;
