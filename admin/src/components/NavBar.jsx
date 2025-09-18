@@ -12,8 +12,7 @@ const NavBar = () => {
   async function handleLogout() {
     try {
       const result = await axios.get(`${serverUrl}/api/user/logout`, { withCredentials: true });
-      await getAdmin(); // Refresh user data
-      // alert('LogOut successful!');
+      await getAdmin(); 
       toast.success("Logout Successfully");
     } catch (err) {
       console.log('Logout Failed !', err);

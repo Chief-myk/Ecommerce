@@ -1,13 +1,13 @@
 // config/dbconnection.js
 
 const mongoose = require("mongoose");
-require("dotenv").config();
+const dotenv = require("dotenv")
+dotenv.config();
 const Product = require("../models/productsModel"); // adjust path
 
 const dbConnect = async () => {
     try {
-           const connection = await mongoose.connect(process.env.MONGO_DB_URL || "mongodb://localhost:27017/Ecommerce");
-        // const connection = await mongoose.connect("mongodb://localhost:27017/Ecommerce");
+           const connection = await mongoose.connect(process.env.MONGO_DB_URL);
         console.log("Mongoose Connected Successfully");
         // // 🔥 Drop the old slug index if it exists
         // try {
