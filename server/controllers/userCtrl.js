@@ -138,7 +138,7 @@ const getallUsers = asyncHandler(async (req, res) => {
 // In your getCurrentUser controller
 const getCurrentUser = asyncHandler(async (req, res) => {
   try {
-    const { token } = req.cookies;
+    const token = req.cookies.token;
     console.log('Token from cookies:', token); // Debug log
     
     if (!token) {
