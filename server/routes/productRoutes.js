@@ -16,4 +16,5 @@ router.post('/addproduct',upload.fields([
 router.get("/listProducts", listProduct)
 router.delete("/removeProduct/:id", adminAuth , RemoveProduct)
 
+
 module.exports = router;
