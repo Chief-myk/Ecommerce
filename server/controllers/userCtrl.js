@@ -32,12 +32,11 @@ const createUser = asyncHandler(async (req, res) => {
     
     // CONSISTENT: Use "token" cookie name like registration
     res.cookie("token", token, {
-      // httpOnly: true,
+      httpOnly: true,
       // secure: false,
       // sameSite: "strict",
-
-      // secure:true,
-      // sameSite:"none",
+      secure:true,
+      sameSite:"none",
       maxAge: 3 * 24 * 60 * 60 * 1000,
     });
     
@@ -60,9 +59,9 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     const token = generatetoken(finduser?._id);
     
     res.cookie("token", token, {
-      // httpOnly: true,
-      // secure: false, 
-      // sameSite: "strict",
+      httpOnly: true,
+      secure: true, 
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
     
@@ -107,9 +106,9 @@ const googleSignUp = asyncHandler(async (req, res) => {
     const token = generatetoken(user?._id);
     
     res.cookie("token", token, {
-      // httpOnly: true,
-      // secure: false, // Set to true if using HTTPS
-      // sameSite: "strict",
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
     
@@ -176,9 +175,9 @@ const isAdmin = asyncHandler(async (req, res, next) => {
       const token = generatetokenforAdmin(email);
       
       res.cookie("token", token, {
-        // httpOnly: true,
-        // secure: true, // FIXED: Change to false for localhost (http)
-        // sameSite: "none",
+        httpOnly: true,
+        secure: true, // FIXED: Change to false for localhost (http)
+        sameSite: "none",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
       
