@@ -6,17 +6,25 @@ dotenv.config();
 
 const generatetoken = (id) => {
     try {
-        return jwt.sign({ id }, process.env.JWT_SECRET, {
+        return jwt.sign({ id }, "mysecretkey", {
             expiresIn: "3d",
         });
     } catch (error) {
         throw new Error("Error generating token");
     }
 };
+//     try {
+//         return jwt.sign({ id }, process.env.JWT_SECRET, {
+//             expiresIn: "3d",
+//         });
+//     } catch (error) {
+//         throw new Error("Error generating token");
+//     }
+// };
 
 const generatetokenforAdmin = (email) => {
     try {
-        return jwt.sign({ email }, process.env.JWT_SECRET, {
+        return jwt.sign({ email }, "mysecretkey", {
             expiresIn: "3d",
         });
     } catch (error) {
