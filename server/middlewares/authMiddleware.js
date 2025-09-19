@@ -25,7 +25,7 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
 });
 const adminAuth = asyncHandler(async (req, res, next) => {
     try {
-        let {token} = req.cookies; // Changed from destructuring to direct access
+        let token = req.cookies.token; // Changed from destructuring to direct access
         
         if (!token) {
             return res.status(401).json({ message: 'No token, authorization denied' });
