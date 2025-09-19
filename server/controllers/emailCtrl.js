@@ -27,7 +27,7 @@ const sendEmail = asyncHandler(async (data, req, res) => {
 
     const transporter = nodemailer.createTransport({
         service: 'gmail', // Use your email service
-        secure: true, // true for 465, false for other ports
+        // secure: true, // true for 465, false for other ports
         port: 465,
         auth: {
             user: 'mayankixa17@gmail.com',

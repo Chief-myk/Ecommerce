@@ -1,6 +1,6 @@
 const express = require('express');
 const dbConnect = require('./config/dbConnect');
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv')
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const bodyParser = require('body-parser');
@@ -10,6 +10,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;

@@ -9,7 +9,6 @@ router.get('/userOrders', authMiddleware, userOrders);
 router.post("/razorpay" , authMiddleware ,placeOrderRazorPay)
 router.post("/verify-payment" , authMiddleware ,verifyPayment)
 
-
 router.get('/allOrders', allOrders);
 router.post("/updateStatus" , updateStatus)
 
