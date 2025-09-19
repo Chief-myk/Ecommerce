@@ -25,13 +25,13 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
 });
 const adminAuth = asyncHandler(async (req, res, next) => {
     try {
-        let token = req.cookies.token; // Changed from destructuring to direct access
+        let {token} = req.cookies; // Changed from destructuring to direct access
         
         if (!token) {
             return res.status(401).json({ message: 'No token, authorization denied' });
         }
         
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, "mysecretkey");
         
         if (!decoded || !decoded.email) {
             return res.status(401).json({ message: 'Invalid token, authorization not verified' });
