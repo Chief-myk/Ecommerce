@@ -147,7 +147,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     }
     
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, "mysecretkey");
       console.log('Decoded token:', decoded); // Debug log
       
       const user = await User.findById(decoded.id).select("-password");

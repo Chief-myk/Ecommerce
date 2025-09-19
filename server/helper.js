@@ -68,7 +68,7 @@ const handlRefreshToken = asyncHandler(async (req, res) => {
             "No refresh token found in database or user does not exist"
         );
     }
-    jwt.verify(refreshToken, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(refreshToken, "mysecretkey", (err, decoded) => {
         if (err || user._id.toString() !== decoded.id) {
             throw new Error("Invalid refresh token");
         }

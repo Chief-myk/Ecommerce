@@ -11,7 +11,7 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
         let { token } = req.cookies;
         //let token = req.headers.authorization.split(' ')[1];
         // Verify the token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, "mysecretkey");
         // Find the user by ID
         req.user = await User.findById(decoded?.id);
         next();
